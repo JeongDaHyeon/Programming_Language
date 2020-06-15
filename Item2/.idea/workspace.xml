@@ -21,6 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3f0b12af-fffd-4f11-a7cd-7f7d7706e2ea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/interpreter/CuteInterpreter$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/interpreter/CuteInterpreter$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/interpreter/CuteInterpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/interpreter/CuteInterpreter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output07.txt" beforeDir="false" afterPath="$PROJECT_DIR$/output07.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/interpreter/CuteInterpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interpreter/CuteInterpreter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +100,9 @@
       <workItem from="1592044068318" duration="606000" />
       <workItem from="1592045008047" duration="10172000" />
       <workItem from="1592058990947" duration="18590000" />
-      <workItem from="1592188017951" duration="6092000" />
+      <workItem from="1592188017951" duration="6454000" />
+      <workItem from="1592209855398" duration="196000" />
+      <workItem from="1592210159525" duration="1908000" />
     </task>
     <servers />
   </component>
@@ -114,6 +119,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2334" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592050772526">
@@ -140,38 +146,38 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592050720799" />
-    <state width="1877" height="541" key="GridCell.Tab.0.bottom" timestamp="1592201717887">
+    <state width="1877" height="263" key="GridCell.Tab.0.bottom" timestamp="1592212632964">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="541" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592201717887" />
-    <state width="1877" height="541" key="GridCell.Tab.0.center" timestamp="1592201717887">
+    <state width="1877" height="263" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592212632964" />
+    <state width="1877" height="263" key="GridCell.Tab.0.center" timestamp="1592212632964">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="541" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592201717887" />
-    <state width="1877" height="541" key="GridCell.Tab.0.left" timestamp="1592201717887">
+    <state width="1877" height="263" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592212632964" />
+    <state width="1877" height="263" key="GridCell.Tab.0.left" timestamp="1592212632964">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="541" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592201717887" />
-    <state width="1877" height="541" key="GridCell.Tab.0.right" timestamp="1592201717887">
+    <state width="1877" height="263" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592212632964" />
+    <state width="1877" height="263" key="GridCell.Tab.0.right" timestamp="1592212632964">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="541" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592201717887" />
-    <state width="1877" height="308" key="GridCell.Tab.1.bottom" timestamp="1592200208033">
+    <state width="1877" height="263" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592212632964" />
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1592212531981">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="308" key="GridCell.Tab.1.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592200208033" />
-    <state width="1877" height="308" key="GridCell.Tab.1.center" timestamp="1592200208033">
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592212531981" />
+    <state width="1877" height="347" key="GridCell.Tab.1.center" timestamp="1592212531981">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="308" key="GridCell.Tab.1.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592200208033" />
-    <state width="1877" height="308" key="GridCell.Tab.1.left" timestamp="1592200208032">
+    <state width="1877" height="347" key="GridCell.Tab.1.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592212531981" />
+    <state width="1877" height="347" key="GridCell.Tab.1.left" timestamp="1592212531981">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="308" key="GridCell.Tab.1.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592200208032" />
-    <state width="1877" height="308" key="GridCell.Tab.1.right" timestamp="1592200208033">
+    <state width="1877" height="347" key="GridCell.Tab.1.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592212531981" />
+    <state width="1877" height="347" key="GridCell.Tab.1.right" timestamp="1592212531981">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="308" key="GridCell.Tab.1.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592200208033" />
+    <state width="1877" height="347" key="GridCell.Tab.1.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592212531981" />
     <state x="2381" y="164" key="SettingsEditor" timestamp="1592057226525">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -202,24 +208,26 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/interpreter/CuteInterpreter.java</url>
-          <line>346</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/interpreter/CuteInterpreter.java</url>
-          <line>475</line>
+          <line>503</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/interpreter/CuteInterpreter.java</url>
-          <line>141</line>
+          <line>169</line>
           <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/interpreter/CuteInterpreter.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="operator" />
+        <watch expression="symbolTable.entrySet().toArray()[0]" />
+        <watch expression="cuteParser" />
       </configuration>
     </watches-manager>
   </component>

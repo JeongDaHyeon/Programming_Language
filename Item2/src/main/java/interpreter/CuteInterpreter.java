@@ -94,23 +94,51 @@ public class CuteInterpreter {
             case CAR:
                 if(operand.car() instanceof IdNode) // 변수에 저장된 리스트를 불러 올때
                 {
-                    // 리스트를 불러오고, 다시 runExpr를 호출
-                    return runExpr(ListNode.cons(operator, ListNode.cons(symbolTable.get(operand.car().toString()), ListNode.EMPTYLIST)));
+                    String id = operand.car().toString();
+                    // quote가 있는 list일 때
+                    if(((ListNode) symbolTable.get(id)).car() instanceof QuoteNode)
+                    {
+                        // 리스트를 불러오고, 다시 runExpr를 호출
+
+                        return runExpr(ListNode.cons(operator, ListNode.cons(symbolTable.get(operand.car().toString()), ListNode.EMPTYLIST)));
+                    }
+                    else
+                    {
+                        // quote가 없는 list일 때
+                        return ((ListNode) symbolTable.get(id)).car();
+                    }
+
                 }
                 else if (((ListNode) operand.car()).car() instanceof QuoteNode) { // check the Quote exists
-                    // if QuoteNode exist execute the code
+
                     return ((ListNode) ((ListNode) operand.car()).cdr().car()).car(); // return the result
                 }
+                break;
             case CDR:
                 if(operand.car() instanceof IdNode) // 변수에 저장된 리스트를 불러 올때
                 {
-                    // 리스트를 불러오고, 다시 runExpr를 호출
-                    return runExpr(ListNode.cons(operator, ListNode.cons(symbolTable.get(operand.car().toString()), ListNode.EMPTYLIST)));
+                    // 변수에 ( 2 3 ) 이 저장되어 있을 때? ....
+                    String id = operand.car().toString();
+                    // quote가 있는 list일 때
+                    if(((ListNode) symbolTable.get(id)).car() instanceof QuoteNode)
+                    {
+                        // 리스트를 불러오고, 다시 runExpr를 호출
+                        return runExpr(ListNode.cons(operator, ListNode.cons(symbolTable.get(operand.car().toString()), ListNode.EMPTYLIST)));
+
+                    }
+                    else
+                    {
+                        // quote가 없는 list일 때
+                        return ((ListNode) symbolTable.get(id)).cdr();
+                    }
+
                 }
                 else if (((ListNode) operand.car()).car() instanceof QuoteNode) { // check the Quote exists
                     // if QuoteNode exist execute the code
+
                     return ((ListNode) ((ListNode) operand.car()).cdr().car()).cdr();
                 }
+                break;
             case CONS:
                 Node operand1 = operand.car(); // 첫 번째 인자
                 Node operand2 = operand.cdr().car(); // 두 번째 인자
