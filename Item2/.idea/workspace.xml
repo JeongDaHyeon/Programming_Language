@@ -23,13 +23,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/interpreter/CuteInterpreter$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/interpreter/CuteInterpreter$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/interpreter/CuteInterpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/interpreter/CuteInterpreter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lexer/ScannerMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/parser/parse/ParserMain.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/output07.txt" beforeDir="false" afterPath="$PROJECT_DIR$/output07.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interpreter/CuteInterpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interpreter/CuteInterpreter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lexer/ScannerMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/parse/CuteParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/parse/CuteParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/parse/ParserMain.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +101,7 @@
       <workItem from="1592058990947" duration="18590000" />
       <workItem from="1592188017951" duration="6454000" />
       <workItem from="1592209855398" duration="196000" />
-      <workItem from="1592210159525" duration="4568000" />
+      <workItem from="1592210159525" duration="5578000" />
     </task>
     <servers />
   </component>
@@ -155,22 +149,22 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592050720799" />
-    <state width="1877" height="263" key="GridCell.Tab.0.bottom" timestamp="1592220209831">
+    <state width="1877" height="263" key="GridCell.Tab.0.bottom" timestamp="1592220418922">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="263" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592220209831" />
-    <state width="1877" height="263" key="GridCell.Tab.0.center" timestamp="1592220209831">
+    <state width="1877" height="263" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592220418922" />
+    <state width="1877" height="263" key="GridCell.Tab.0.center" timestamp="1592220418922">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="263" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592220209831" />
-    <state width="1877" height="263" key="GridCell.Tab.0.left" timestamp="1592220209830">
+    <state width="1877" height="263" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592220418922" />
+    <state width="1877" height="263" key="GridCell.Tab.0.left" timestamp="1592220418922">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="263" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592220209830" />
-    <state width="1877" height="263" key="GridCell.Tab.0.right" timestamp="1592220209831">
+    <state width="1877" height="263" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592220418922" />
+    <state width="1877" height="263" key="GridCell.Tab.0.right" timestamp="1592220418922">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="263" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592220209831" />
+    <state width="1877" height="263" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592220418922" />
     <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1592219997143">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -213,20 +207,6 @@
     <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592060920334" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/interpreter/CuteInterpreter.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/interpreter/CuteInterpreter.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="operator" />
