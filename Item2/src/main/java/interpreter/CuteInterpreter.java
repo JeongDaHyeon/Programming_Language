@@ -13,7 +13,6 @@ public class CuteInterpreter {
     public static Hashtable<String, Node> symbolTable = new Hashtable<String, Node>(); // symbol table 을 만듦
 
     public static void main(String[] args) throws Exception {
-        ClassLoader cloader = ParserMain.class.getClassLoader();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
         while (true) {
@@ -24,11 +23,15 @@ public class CuteInterpreter {
                 CuteParser cuteParser = new CuteParser(string);
                 Node parseTree = cuteParser.parseExpr();
                 Node resultNode = interpreter.runExpr(parseTree);
+                // define을 입력 받으면 아무것도 출력 되지 않게
+                if(string.contains("define")) continue;
+
+                // 입력값에 해당하는 출력값을 출력
                 NodePrinter nodePrinter = new NodePrinter(resultNode);
                 System.out.print(". ");
                 nodePrinter.prettyPrint();
             } catch (Exception e) {
-                System.out.println("Wrong Input"); // 잘못된 입력을 처리
+                System.out.println(". Wrong Input"); // 잘못된 입력을 처리
             }
         }
 

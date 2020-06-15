@@ -1,18 +1,9 @@
 package parser.parse;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.stream.Stream;
 
 import parser.ast.*;
-import parser.ast.BinaryOpNode.BinType;
 import lexer.Scanner;
-import lexer.ScannerMain;
 import lexer.Token;
 import lexer.TokenType;
 
