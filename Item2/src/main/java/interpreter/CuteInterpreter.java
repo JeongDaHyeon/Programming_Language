@@ -45,10 +45,13 @@ public class CuteInterpreter {
     }
 
     public Node runExpr(Node rootExpr) {
+
         if (rootExpr == null)
             return null;
         if (rootExpr instanceof IdNode)
-            return rootExpr;
+            // 변수를 입력 받았을 때 변수 값을 출력
+            return symbolTable.get(rootExpr.toString());
+            // return rootExpr;
         else if (rootExpr instanceof IntNode)
             return rootExpr;
         else if (rootExpr instanceof BooleanNode)
@@ -62,6 +65,7 @@ public class CuteInterpreter {
 
     private Node runList(ListNode list) {
         list = (ListNode) stripList(list);
+
         if (list.equals(ListNode.EMPTYLIST))
             return list;
         if (list.car() instanceof FunctionNode) {
