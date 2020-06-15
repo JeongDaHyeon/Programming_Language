@@ -3,6 +3,7 @@ package interpreter;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Hashtable;
+import java.util.List;
 
 import parser.ast.*;
 import parser.parse.*;
@@ -178,6 +179,7 @@ public class CuteInterpreter {
                 Node operand1_eq = operand.car();
                 // 두 번째 인자
                 Node operand2_eq = operand.cdr().car();
+
                 if(operand1_eq instanceof IntNode && operand2_eq instanceof IntNode)
                 {
                     if(operand1_eq.equals(operand2_eq)) return BooleanNode.TRUE_NODE;
@@ -187,7 +189,9 @@ public class CuteInterpreter {
                 if(operand1_eq instanceof IdNode && operand2_eq instanceof IdNode)
                 {
                     // 인자의 이름이 동일한 경우
-                    if(symbolTable.get(operand1_eq.toString()).equals(symbolTable.get(operand2_eq.toString())))
+
+                    //if(symbolTable.get(operand1_eq.toString()).equals(symbolTable.get(operand2_eq.toString())))
+                    if(operand1_eq.equals(operand2_eq))
                     {
                         return BooleanNode.TRUE_NODE; // return TRUE_NODE
                     }
@@ -197,21 +201,40 @@ public class CuteInterpreter {
                     }
                 }
 
+
+
                 if(((ListNode)operand.car()).car() instanceof QuoteNode)
                 {
                     Node param1 = ((ListNode) operand.car()).cdr().car(); // parameter 1
                     Node param2 = ((ListNode) operand.cdr().car()).cdr().car(); // parameter 2
 
-                    if (param1 instanceof ListNode) // if the param1 is ListNode
-                    {
-                        return BooleanNode.FALSE_NODE; // return FALSE_NODE
-                    }
-                    // if eq? (list) (atom)
-                    if (param2 instanceof ListNode) // if the param2 is ListNode
-                    {
-                        return BooleanNode.FALSE_NODE; // return FALSE_NODE
+
+
+                    // 리스트 null List일 때
+                    if(param1 instanceof ListNode || param2 instanceof ListNode) {
+                        if(((ListNode)operand1_eq).cdr().car().equals(((ListNode)operand1_eq).cdr().cdr()) && ((ListNode)operand2_eq).cdr().car().equals(((ListNode)operand2_eq).cdr().cdr())){
+                            return BooleanNode.TRUE_NODE;
+                        }
+                        else
+                        {
+                            return BooleanNode.FALSE_NODE;
+                        }
                     }
 
+
+
+//                    if (param1 instanceof ListNode) // if the param1 is ListNode
+//                    {
+//                        return BooleanNode.FALSE_NODE; // return FALSE_NODE
+//                    }
+//
+//                    // if eq? (list) (atom)
+//                    if (param2 instanceof ListNode) // if the param2 is ListNode
+//                    {
+//                        return BooleanNode.FALSE_NODE; // return FALSE_NODE
+//                    }
+
+                    // 문자열을 검사
 
                     if (param1.equals(param2)) // if the Object is same
                     {
@@ -221,6 +244,9 @@ public class CuteInterpreter {
                     {
                         return BooleanNode.FALSE_NODE; // return FALSE_NODE
                     }
+
+
+
                 }
 
             case NOT:
