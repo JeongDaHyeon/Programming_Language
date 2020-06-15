@@ -180,18 +180,19 @@ public class CuteInterpreter {
                 // 두 번째 인자
                 Node operand2_eq = operand.cdr().car();
 
+                // 인자가 IntNode일 대
                 if(operand1_eq instanceof IntNode && operand2_eq instanceof IntNode)
                 {
                     if(operand1_eq.equals(operand2_eq)) return BooleanNode.TRUE_NODE;
                     else return BooleanNode.FALSE_NODE;
                 }
-
+                // 둘다 IdNode 일때 == 변수 일때
                 if(operand1_eq instanceof IdNode && operand2_eq instanceof IdNode)
                 {
                     // 인자의 이름이 동일한 경우
 
                     //if(symbolTable.get(operand1_eq.toString()).equals(symbolTable.get(operand2_eq.toString())))
-                    if(operand1_eq.equals(operand2_eq))
+                    if(operand1_eq.equals(operand2_eq)) // 같은Id Node일 때
                     {
                         return BooleanNode.TRUE_NODE; // return TRUE_NODE
                     }
@@ -202,16 +203,15 @@ public class CuteInterpreter {
                 }
 
 
-
+                // 문자열과 배열을 검사
                 if(((ListNode)operand.car()).car() instanceof QuoteNode)
                 {
                     Node param1 = ((ListNode) operand.car()).cdr().car(); // parameter 1
                     Node param2 = ((ListNode) operand.cdr().car()).cdr().car(); // parameter 2
-
-
-
+                    
                     // 리스트 null List일 때
                     if(param1 instanceof ListNode || param2 instanceof ListNode) {
+                        // 둘다 null List인지 검사
                         if(((ListNode)operand1_eq).cdr().car().equals(((ListNode)operand1_eq).cdr().cdr()) && ((ListNode)operand2_eq).cdr().car().equals(((ListNode)operand2_eq).cdr().cdr())){
                             return BooleanNode.TRUE_NODE;
                         }
@@ -221,21 +221,7 @@ public class CuteInterpreter {
                         }
                     }
 
-
-
-//                    if (param1 instanceof ListNode) // if the param1 is ListNode
-//                    {
-//                        return BooleanNode.FALSE_NODE; // return FALSE_NODE
-//                    }
-//
-//                    // if eq? (list) (atom)
-//                    if (param2 instanceof ListNode) // if the param2 is ListNode
-//                    {
-//                        return BooleanNode.FALSE_NODE; // return FALSE_NODE
-//                    }
-
                     // 문자열을 검사
-
                     if (param1.equals(param2)) // if the Object is same
                     {
                         return BooleanNode.TRUE_NODE; // return TRUE_NODE
