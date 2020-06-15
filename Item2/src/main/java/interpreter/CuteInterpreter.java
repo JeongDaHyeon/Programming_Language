@@ -178,6 +178,12 @@ public class CuteInterpreter {
                 Node operand1_eq = operand.car();
                 // 두 번째 인자
                 Node operand2_eq = operand.cdr().car();
+                if(operand1_eq instanceof IntNode && operand2_eq instanceof IntNode)
+                {
+                    if(operand1_eq.equals(operand2_eq)) return BooleanNode.TRUE_NODE;
+                    else return BooleanNode.FALSE_NODE;
+                }
+
                 if(operand1_eq instanceof IdNode && operand2_eq instanceof IdNode)
                 {
                     // 인자의 이름이 동일한 경우

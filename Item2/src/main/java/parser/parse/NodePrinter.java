@@ -15,6 +15,7 @@ public class NodePrinter {
         this.root = root;
     }
 
+
     private void printList(ListNode listNode) {
         if (listNode == ListNode.EMPTYLIST) {
             return;
@@ -57,7 +58,7 @@ public class NodePrinter {
         System.out.println(sb);
         try (FileWriter fw = new FileWriter(OUTPUT_FILENAME);
              PrintWriter pw = new PrintWriter(fw)) {
-            pw.write(sb.toString()); // ���ڿ��� ��ȯ�� ���� ���
+            pw.write(sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
