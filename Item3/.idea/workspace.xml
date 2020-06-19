@@ -20,7 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f0b12af-fffd-4f11-a7cd-7f7d7706e2ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Item2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Item2/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +49,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Item03" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -65,7 +65,7 @@
     <configuration name="CuteInterpreter" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="MAIN_CLASS_NAME" value="interpreter.CuteInterpreter" />
-      <module name="Item2" />
+      <module name="Item3" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -100,7 +100,7 @@
       <workItem from="1592209855398" duration="196000" />
       <workItem from="1592210159525" duration="6088000" />
       <workItem from="1592550498676" duration="600000" />
-      <workItem from="1592556964142" duration="96000" />
+      <workItem from="1592557061689" duration="62000" />
     </task>
     <servers />
   </component>
@@ -144,11 +144,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2610" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592219415145" />
-    <state x="493" y="180" key="FileChooserDialogImpl" timestamp="1592557058635">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1592050720799">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592050720799" />
-    <state x="493" y="180" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1592557058635" />
     <state width="1877" height="347" key="GridCell.Tab.0.bottom" timestamp="1592221964863">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
