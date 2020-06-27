@@ -4,13 +4,15 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Stack;
 
-import parser.ast.*;
+import parser.ast.*;`
 import parser.parse.*;
 
 public class CuteInterpreter {
     boolean fill = true;
     public static Hashtable<String, Node> symbolTable = new Hashtable<String, Node>(); // symbol table 을 만듦
+    public static Stack<Hashtable<String, Node>> lambdaTable = new Stack<>(); // 인자를 저장할 table
 
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -85,6 +87,25 @@ public class CuteInterpreter {
             else
                 return runBinary(list);
         }
+        // lambda에 바로 변수를 넣어도 될때
+        if(list.car() instanceof ListNode)
+        {
+            // ( ( lambda ( x ) ( + x 1 ) ) 2 )
+            Node firstNode = ((ListNode) list.car()).car();
+            // 첫번째 노드가 FunctionNode일 때
+            if(firstNode instanceof FunctionNode)
+            {
+                // FunctionNode의 funcType이 LAMBDA일 때
+                if(((FunctionNode) firstNode).funcType.equals(FunctionNode.FunctionType.LAMBDA))
+                {
+
+
+
+                }
+            }
+
+        }
+
         return list;
     }
 
@@ -265,9 +286,6 @@ public class CuteInterpreter {
                     {
                         return BooleanNode.FALSE_NODE; // return FALSE_NODE
                     }
-
-
-
                 }
 
             case NOT:
@@ -324,6 +342,12 @@ public class CuteInterpreter {
                 break;
 
             case LAMBDA:
+                // lambda 함수를 저장할 필요가 없을 때
+                // ( ( lambda ( x ) ( + x 1 ) ) 2 )
+                System.out.println("here");
+                // lambda 함수를 저장해야 할 때
+
+
             default:
                 break;
 
