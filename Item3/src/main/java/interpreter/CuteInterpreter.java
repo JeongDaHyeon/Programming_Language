@@ -6,7 +6,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Stack;
 
-import parser.ast.*;`
+import parser.ast.*;
 import parser.parse.*;
 
 public class CuteInterpreter {
@@ -42,6 +42,15 @@ public class CuteInterpreter {
     // 테이블에 id가 value 임을 저장하는 함수
     public void insertTable(String id, Node value) {
         symbolTable.put(id, value);
+    }
+
+    public void insertLambdaTable(ListNode variableName, ListNode variableValue)
+    {
+        if(variableName.car() != null && variableValue.car() != null)
+        {
+            lambdaTable.peek().put(((IdNode) variableName.car()).toString(), variableValue.car());
+            insertLambdaTable(variableName.cdr(), variableValue.cdr());
+        }
     }
 
 
@@ -98,9 +107,8 @@ public class CuteInterpreter {
                 // FunctionNode의 funcType이 LAMBDA일 때
                 if(((FunctionNode) firstNode).funcType.equals(FunctionNode.FunctionType.LAMBDA))
                 {
-
-
-
+                    lambdaTable.push(new Hashtable<String, Node>());
+                    insertLambdaTable(((ListNode) ((ListNode) list.car()).cdr().car()), list.cdr());
                 }
             }
 
@@ -531,11 +539,9 @@ public class CuteInterpreter {
                         }
                     }
                 case EQ:
-
                     if ((operand.car() instanceof ListNode) && (operand.cdr().car() instanceof ListNode)) // if both are ListNode
                     {
                         // * ListNode ListNode
-
                         if (((IntNode) runBinary((ListNode) operand.car())).getValue().equals(((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue()))// if both parameters are same
                         {
                             return BooleanNode.TRUE_NODE; // return true
@@ -575,6 +581,4 @@ public class CuteInterpreter {
         }
         return null;
     }
-
-
 }
