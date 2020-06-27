@@ -43,7 +43,8 @@ public class CuteInterpreter {
     public void insertTable(String id, Node value) {
         symbolTable.put(id, value);
     }
-
+    
+    // 함수의 인자를 저장하는 테이블
     public void insertLambdaTable(ListNode variableName, ListNode variableValue)
     {
         if(variableName.car() != null && variableValue.car() != null)
@@ -109,6 +110,8 @@ public class CuteInterpreter {
                 {
                     lambdaTable.push(new Hashtable<String, Node>());
                     insertLambdaTable(((ListNode) ((ListNode) list.car()).cdr().car()), list.cdr());
+                    Node temp = list.cdr().cdr();
+                    return runList(((ListNode)list.car()).cdr().cdr());
                 }
             }
 
@@ -382,15 +385,32 @@ public class CuteInterpreter {
         
         // 둘 중 하나라도 IdNode인 경우
         // 즉, 변수인 경우
+        // ( ( lambda ( x ) ( + x 1 ) ) 2 )
         if (operand1 instanceof IdNode || operand2 instanceof IdNode) {
-            // operand1이 변수인 경우 value를 불러옴
-            if (operand1 instanceof IdNode) {
-                operand1 = symbolTable.get(operand1.toString());
+            if(lambdaTable.size() != 0)
+            {
+                // operand1이 변수인 경우 value를 불러옴
+                if (operand1 instanceof IdNode) {
+                    operand1 = lambdaTable.peek().get(operand1.toString());
+                }
+                // operand2이 변수인 경우 value를 불러옴
+                if (operand2 instanceof IdNode) {
+                    operand2 = lambdaTable.peek().get(operand2.toString());
+                }
+                lambdaTable.pop();
             }
-            // operand2이 변수인 경우 value를 불러옴
-            if (operand2 instanceof IdNode) {
-                operand2 = symbolTable.get(operand2.toString());
+            else
+            {
+                // operand1이 변수인 경우 value를 불러옴
+                if (operand1 instanceof IdNode) {
+                    operand1 = symbolTable.get(operand1.toString());
+                }
+                // operand2이 변수인 경우 value를 불러옴
+                if (operand2 instanceof IdNode) {
+                    operand2 = symbolTable.get(operand2.toString());
+                }
             }
+
             // list의 변수 id에 해당하는 값으로 변경
             list = ListNode.cons(operand2, ListNode.EMPTYLIST);
             list = ListNode.cons(operand1, list);

@@ -1,1 +1,1 @@
-( ( LAMBDA ( x y ) ( PLUS x 1 ) ) 2 3 ) 
+3 
