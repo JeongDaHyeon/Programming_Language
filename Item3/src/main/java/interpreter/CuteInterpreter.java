@@ -98,6 +98,13 @@ public class CuteInterpreter {
                 return runBinary(list);
         }
         // lambda에 바로 변수를 넣어도 될때
+        if(list.car() instanceof IdNode)
+        {
+            if(symbolTable.containsKey(list.car().toString()))
+            {
+                list = ListNode.cons(symbolTable.get(list.car().toString()), list.cdr());
+            }
+        }
         if(list.car() instanceof ListNode)
         {
             // ( ( lambda ( x ) ( + x 1 ) ) 2 )
@@ -345,7 +352,17 @@ public class CuteInterpreter {
                 // value가 ListNode 일 때
                 if (value instanceof ListNode) {
                     // runExpr로 처리
-                    insertTable(id.toString(), runExpr(value));
+                    if(((ListNode) operand.cdr().car()).car() instanceof FunctionNode)
+                    {
+                        if(((FunctionNode)((ListNode) operand.cdr().car()).car()).funcType.equals(FunctionNode.FunctionType.LAMBDA))
+                        {
+                            insertTable(id.toString(), operand.cdr().car());
+                        }
+                    }
+                    else
+                    {
+                        insertTable(id.toString(), runExpr(value));
+                    }
                 } else {
                     // 그 외에는 그냥 저장
                     insertTable(id.toString(), value);
@@ -353,8 +370,9 @@ public class CuteInterpreter {
                 break;
 
             case LAMBDA:
-                // lambda 함수를 저장할 필요가 없을 때
+                // lambda 함수를 저장할 필요가 없을 때 -> runList에서 처리
                 // ( ( lambda ( x ) ( + x 1 ) ) 2 )
+                // ( define plus1 ( lambda ( x ) ( + x 1 ) ) )
                 System.out.println("here");
                 // lambda 함수를 저장해야 할 때
 
