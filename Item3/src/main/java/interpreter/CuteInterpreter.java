@@ -2,6 +2,7 @@ package interpreter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.invoke.LambdaConversionException;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Stack;
@@ -12,7 +13,8 @@ import parser.parse.*;
 public class CuteInterpreter {
     boolean fill = true;
     public static Hashtable<String, Node> symbolTable = new Hashtable<String, Node>(); // symbol table 을 만듦
-    public static Stack<Hashtable<String, Node>> lambdaTable = new Stack<>(); // 인자를 저장할 table
+//    public static Stack<Hashtable<String, Node>> lambdaTable = new Stack<>(); // 인자를 저장할 table
+    public static Hashtable<String, Node> lambdaTable = new Hashtable<>();
 
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -33,6 +35,7 @@ public class CuteInterpreter {
                 System.out.print(". ");
                 nodePrinter.prettyPrint();
             } catch (Exception e) {
+                System.out.println(e.getMessage());
                 System.out.println(". Wrong Input"); // 잘못된 입력을 처리
             }
         }
@@ -49,7 +52,7 @@ public class CuteInterpreter {
     {
         if(variableName.car() != null && variableValue.car() != null)
         {
-            lambdaTable.peek().put(((IdNode) variableName.car()).toString(), variableValue.car());
+            lambdaTable.put(variableName.car().toString(), variableValue.car());
             insertLambdaTable(variableName.cdr(), variableValue.cdr());
         }
     }
@@ -115,7 +118,6 @@ public class CuteInterpreter {
                 // FunctionNode의 funcType이 LAMBDA일 때
                 if(((FunctionNode) firstNode).funcType.equals(FunctionNode.FunctionType.LAMBDA))
                 {
-                    lambdaTable.push(new Hashtable<String, Node>());
                     insertLambdaTable(((ListNode) ((ListNode) list.car()).cdr().car()), list.cdr());
                     Node temp = list.cdr().cdr();
                     return runList(((ListNode)list.car()).cdr().cdr());
@@ -405,27 +407,27 @@ public class CuteInterpreter {
         // 즉, 변수인 경우
         // ( ( lambda ( x ) ( + x 1 ) ) 2 )
         if (operand1 instanceof IdNode || operand2 instanceof IdNode) {
-            if(lambdaTable.size() != 0)
+            if(operand1 instanceof IdNode)
             {
-                // operand1이 변수인 경우 value를 불러옴
-                if (operand1 instanceof IdNode) {
-                    operand1 = lambdaTable.peek().get(operand1.toString());
+                if(lambdaTable.containsKey(operand1.toString()))
+                {
+                    operand1 = lambdaTable.get(operand1.toString());
                 }
-                // operand2이 변수인 경우 value를 불러옴
-                if (operand2 instanceof IdNode) {
-                    operand2 = lambdaTable.peek().get(operand2.toString());
-                }
-                lambdaTable.pop();
-            }
-            else
-            {
-                // operand1이 변수인 경우 value를 불러옴
-                if (operand1 instanceof IdNode) {
+                else
+                {
                     operand1 = symbolTable.get(operand1.toString());
                 }
-                // operand2이 변수인 경우 value를 불러옴
-                if (operand2 instanceof IdNode) {
-                    operand2 = symbolTable.get(operand2.toString());
+            }
+
+            if(operand2 instanceof IdNode)
+            {
+                if(lambdaTable.containsKey(operand2.toString()))
+                {
+                    operand1 = lambdaTable.get(operand2.toString());
+                }
+                else
+                {
+                    operand1 = symbolTable.get(operand2.toString());
                 }
             }
 
