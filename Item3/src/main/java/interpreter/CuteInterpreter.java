@@ -26,7 +26,9 @@ public class CuteInterpreter {
                 CuteInterpreter interpreter = new CuteInterpreter();
                 CuteParser cuteParser = new CuteParser(string);
                 Node parseTree = cuteParser.parseExpr();
+
                 Node resultNode = interpreter.runExpr(parseTree);
+                if(lambdaTable.size() != 0) lambdaTable.clear(); // 함수에 쓰여진 인자를 비워줌
                 // define을 입력 받으면 아무것도 출력 되지 않게
                 if(string.contains("define")) continue;
 
@@ -35,7 +37,6 @@ public class CuteInterpreter {
                 System.out.print(". ");
                 nodePrinter.prettyPrint();
             } catch (Exception e) {
-                System.out.println(e.getMessage());
                 System.out.println(". Wrong Input"); // 잘못된 입력을 처리
             }
         }
@@ -52,7 +53,7 @@ public class CuteInterpreter {
     {
         if(variableName.car() != null && variableValue.car() != null)
         {
-            lambdaTable.put(variableName.car().toString(), variableValue.car());
+            if(!lambdaTable.containsKey(variableName.car().toString())) lambdaTable.put(variableName.car().toString(), variableValue.car());
             insertLambdaTable(variableName.cdr(), variableValue.cdr());
         }
     }
@@ -108,6 +109,7 @@ public class CuteInterpreter {
                 list = ListNode.cons(symbolTable.get(list.car().toString()), list.cdr());
             }
         }
+
         if(list.car() instanceof ListNode)
         {
             // ( ( lambda ( x ) ( + x 1 ) ) 2 )
@@ -123,7 +125,6 @@ public class CuteInterpreter {
                     return runList(((ListNode)list.car()).cdr().cdr());
                 }
             }
-
         }
 
         return list;
@@ -375,7 +376,6 @@ public class CuteInterpreter {
                 // lambda 함수를 저장할 필요가 없을 때 -> runList에서 처리
                 // ( ( lambda ( x ) ( + x 1 ) ) 2 )
                 // ( define plus1 ( lambda ( x ) ( + x 1 ) ) )
-                System.out.println("here");
                 // lambda 함수를 저장해야 할 때
 
 
@@ -444,26 +444,26 @@ public class CuteInterpreter {
                 case PLUS:
                     if ((operand.car() instanceof ListNode) && (operand.cdr().car() instanceof ListNode)) // if both are ListNode
                     {
-                        return new IntNode(Integer.toString(((IntNode) runBinary((ListNode) operand.car())).getValue() + ((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue()));
+                        return new IntNode(Integer.toString(((IntNode) runList((ListNode) operand.car())).getValue() + ((IntNode) runList(((ListNode) operand.cdr().car()))).getValue()));
                     } else if (operand.car() instanceof ListNode) {
-                        return new IntNode(Integer.toString(((IntNode) runBinary((ListNode) operand.car())).getValue() + ((IntNode) operand.cdr().car()).getValue()));
+                        return new IntNode(Integer.toString(((IntNode) runList((ListNode) operand.car())).getValue() + ((IntNode) operand.cdr().car()).getValue()));
 
                     } else if (operand.cdr().car() instanceof ListNode) {
-                        return new IntNode(Integer.toString(((IntNode) operand.car()).getValue() + ((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue()));
+                        return new IntNode(Integer.toString(((IntNode) operand.car()).getValue() + ((IntNode) runList(((ListNode) operand.cdr().car()))).getValue()));
                     } else {
                         return new IntNode(Integer.toString(((IntNode) operand.car()).getValue() + ((IntNode) operand.cdr().car()).getValue()));
                     }
                 case MINUS:
                     if ((operand.car() instanceof ListNode) && (operand.cdr().car() instanceof ListNode)) // if both are ListNode
                     {
-                        return new IntNode(Integer.toString(((IntNode) runBinary((ListNode) operand.car())).getValue() - ((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue()));
+                        return new IntNode(Integer.toString(((IntNode) runList((ListNode) operand.car())).getValue() - ((IntNode) runList(((ListNode) operand.cdr().car()))).getValue()));
                     } else if (operand.car() instanceof ListNode) // if first parameter is ListNode
                     {
-                        return new IntNode(Integer.toString(((IntNode) runBinary((ListNode) operand.car())).getValue() - ((IntNode) operand.cdr().car()).getValue()));
+                        return new IntNode(Integer.toString(((IntNode) runList((ListNode) operand.car())).getValue() - ((IntNode) operand.cdr().car()).getValue()));
 
                     } else if (operand.cdr().car() instanceof ListNode) // if second parameter is ListNode
                     {
-                        return new IntNode(Integer.toString(((IntNode) operand.car()).getValue() - ((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue()));
+                        return new IntNode(Integer.toString(((IntNode) operand.car()).getValue() - ((IntNode) runList(((ListNode) operand.cdr().car()))).getValue()));
                     } else  // Both operator and operand are IntNode
                     {
                         return new IntNode(Integer.toString(((IntNode) operand.car()).getValue() - ((IntNode) operand.cdr().car()).getValue()));
@@ -472,15 +472,15 @@ public class CuteInterpreter {
                     if ((operand1 instanceof ListNode) && (operand.cdr().car() instanceof ListNode)) // if both are ListNode
                     {
                         // * ListNode ListNode
-                        return new IntNode(Integer.toString(((IntNode) runBinary((ListNode) operand.car())).getValue() * ((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue()));
+                        return new IntNode(Integer.toString(((IntNode) runList((ListNode) operand.car())).getValue() * ((IntNode) runList(((ListNode) operand.cdr().car()))).getValue()));
                     } else if (operand.car() instanceof ListNode)  // if first parameter is ListNode
                     {
                         // * ListNode IntNode
-                        return new IntNode(Integer.toString(((IntNode) runBinary((ListNode) operand.car())).getValue() * ((IntNode) operand.cdr().car()).getValue()));
+                        return new IntNode(Integer.toString(((IntNode) runList((ListNode) operand.car())).getValue() * ((IntNode) operand.cdr().car()).getValue()));
                     } else if (operand.cdr().car() instanceof ListNode) // if second parameter is ListNode
                     {
                         // * IntNode ListNode
-                        return new IntNode(Integer.toString(((IntNode) operand.car()).getValue() * ((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue()));
+                        return new IntNode(Integer.toString(((IntNode) operand.car()).getValue() * ((IntNode) runList(((ListNode) operand.cdr().car()))).getValue()));
                     } else  // Both operator and operand are IntNode
                     {
                         // * IntNode IntNode
@@ -490,15 +490,15 @@ public class CuteInterpreter {
                     if ((operand.car() instanceof ListNode) && (operand.cdr().car() instanceof ListNode)) // if both are ListNode
                     {
                         // * ListNode ListNode
-                        return new IntNode(Integer.toString(((IntNode) runBinary((ListNode) operand.car())).getValue() / ((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue()));
+                        return new IntNode(Integer.toString(((IntNode) runList((ListNode) operand.car())).getValue() / ((IntNode) runList(((ListNode) operand.cdr().car()))).getValue()));
                     } else if (operand.car() instanceof ListNode) // if first parameter is ListNode
                     {
                         // * ListNode IntNode
-                        return new IntNode(Integer.toString(((IntNode) runBinary((ListNode) operand.car())).getValue() / ((IntNode) operand.cdr().car()).getValue()));
+                        return new IntNode(Integer.toString(((IntNode) runList((ListNode) operand.car())).getValue() / ((IntNode) operand.cdr().car()).getValue()));
                     } else if (operand.cdr().car() instanceof ListNode) // if second parameter is ListNode
                     {
                         // * IntNode ListNode
-                        return new IntNode(Integer.toString(((IntNode) operand.car()).getValue() / ((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue()));
+                        return new IntNode(Integer.toString(((IntNode) operand.car()).getValue() / ((IntNode) runList(((ListNode) operand.cdr().car()))).getValue()));
                     } else  // Both operator and operand are IntNode
                     {
                         // * IntNode IntNode
@@ -508,7 +508,7 @@ public class CuteInterpreter {
                     if ((operand.car() instanceof ListNode) && (operand.cdr().car() instanceof ListNode)) // if both are ListNode
                     {
                         // * ListNode ListNode
-                        if (((IntNode) runBinary((ListNode) operand.car())).getValue() < ((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue()) // if first parameter is less than second parameter
+                        if (((IntNode) runList((ListNode) operand.car())).getValue() < ((IntNode) runList(((ListNode) operand.cdr().car()))).getValue()) // if first parameter is less than second parameter
                         {
                             return BooleanNode.TRUE_NODE; // return true
                         } else {
@@ -516,7 +516,7 @@ public class CuteInterpreter {
                         }
                     } else if (operand.car() instanceof ListNode) // if first parameter is ListNode
                     {
-                        if (((IntNode) runBinary((ListNode) operand.car())).getValue() < ((IntNode) operand.cdr().car()).getValue()) // if first parameter is less than second parameter
+                        if (((IntNode) runList((ListNode) operand.car())).getValue() < ((IntNode) operand.cdr().car()).getValue()) // if first parameter is less than second parameter
                         {
                             return BooleanNode.TRUE_NODE; // return true
                         } else {
@@ -524,7 +524,7 @@ public class CuteInterpreter {
                         }
                     } else if (operand.cdr().car() instanceof ListNode) // if second parameter is ListNode
                     {
-                        if (((IntNode) operand.car()).getValue() < ((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue()) // if first parameter is less than second parameter
+                        if (((IntNode) operand.car()).getValue() < ((IntNode) runList(((ListNode) operand.cdr().car()))).getValue()) // if first parameter is less than second parameter
                         {
                             return BooleanNode.TRUE_NODE; // return true
                         } else {
@@ -546,7 +546,7 @@ public class CuteInterpreter {
                     if ((operand.car() instanceof ListNode) && (operand.cdr().car() instanceof ListNode)) // if both are ListNode
                     {
                         // * ListNode ListNode
-                        if (((IntNode) runBinary((ListNode) operand.car())).getValue() > ((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue()) // if first parameter is greater than second parameter
+                        if (((IntNode) runList((ListNode) operand.car())).getValue() > ((IntNode) runList(((ListNode) operand.cdr().car()))).getValue()) // if first parameter is greater than second parameter
                         {
                             return BooleanNode.TRUE_NODE; // return true
                         } else {
@@ -554,7 +554,7 @@ public class CuteInterpreter {
                         }
                     } else if (operand.car() instanceof ListNode) // if first parameter is ListNode
                     {
-                        if (((IntNode) runBinary((ListNode) operand.car())).getValue() > ((IntNode) operand.cdr().car()).getValue()) // if first parameter is greater than second parameter
+                        if (((IntNode) runList((ListNode) operand.car())).getValue() > ((IntNode) operand.cdr().car()).getValue()) // if first parameter is greater than second parameter
                         {
                             return BooleanNode.TRUE_NODE; // return true
                         } else {
@@ -562,7 +562,7 @@ public class CuteInterpreter {
                         }
                     } else if (operand.cdr().car() instanceof ListNode) // if second parameter is ListNode
                     {
-                        if (((IntNode) operand.car()).getValue() > ((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue()) // if first parameter is greater than second parameter
+                        if (((IntNode) operand.car()).getValue() > ((IntNode) runList(((ListNode) operand.cdr().car()))).getValue()) // if first parameter is greater than second parameter
                         {
                             return BooleanNode.TRUE_NODE; // return true
                         } else {
@@ -582,7 +582,7 @@ public class CuteInterpreter {
                     if ((operand.car() instanceof ListNode) && (operand.cdr().car() instanceof ListNode)) // if both are ListNode
                     {
                         // * ListNode ListNode
-                        if (((IntNode) runBinary((ListNode) operand.car())).getValue().equals(((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue()))// if both parameters are same
+                        if (((IntNode) runList((ListNode) operand.car())).getValue().equals(((IntNode) runList(((ListNode) operand.cdr().car()))).getValue()))// if both parameters are same
                         {
                             return BooleanNode.TRUE_NODE; // return true
                         } else {
@@ -590,7 +590,7 @@ public class CuteInterpreter {
                         }
                     } else if (operand.car() instanceof ListNode) // if first parameter is ListNode
                     {
-                        if (((IntNode) runBinary((ListNode) operand.car())).getValue().equals(((IntNode) operand.cdr().car()).getValue())) // if both parameters are same
+                        if (((IntNode) runList((ListNode) operand.car())).getValue().equals(((IntNode) operand.cdr().car()).getValue())) // if both parameters are same
                         {
                             return BooleanNode.TRUE_NODE; // return true
                         } else {
@@ -598,7 +598,7 @@ public class CuteInterpreter {
                         }
                     } else if (operand.cdr().car() instanceof ListNode) // if second parameter is ListNode
                     {
-                        if (((IntNode) operand.car()).getValue().equals(((IntNode) runBinary(((ListNode) operand.cdr().car()))).getValue())) // if both parameters are same
+                        if (((IntNode) operand.car()).getValue().equals(((IntNode) runList(((ListNode) operand.cdr().car()))).getValue())) // if both parameters are same
                         {
                             return BooleanNode.TRUE_NODE; // return true
                         } else {
