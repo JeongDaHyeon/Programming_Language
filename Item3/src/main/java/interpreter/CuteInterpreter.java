@@ -14,7 +14,7 @@ public class CuteInterpreter {
     boolean fill = true;
     public static Hashtable<String, Node> symbolTable = new Hashtable<String, Node>(); // symbol table 을 만듦
 //    public static Stack<Hashtable<String, Node>> lambdaTable = new Stack<>(); // 인자를 저장할 table
-    public static Hashtable<String, Node> lambdaTable = new Hashtable<>();
+    public static Hashtable<String, Node> lambdaTable = new Hashtable<>(); // 함수의 인자를 저장하는 table
 
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -377,6 +377,7 @@ public class CuteInterpreter {
                 // ( ( lambda ( x ) ( + x 1 ) ) 2 )
                 // ( define plus1 ( lambda ( x ) ( + x 1 ) ) )
                 // lambda 함수를 저장해야 할 때
+                // lambda가 왔을 때? 그 때를 구현?
 
 
             default:
