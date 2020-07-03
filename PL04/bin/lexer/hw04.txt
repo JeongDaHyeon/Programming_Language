@@ -1,0 +1,34 @@
+L_PAREN: (
+DEFINE: define
+ID : length
+L_PAREN: (
+LAMBDA: lambda
+L_PAREN: (
+ID : x
+R_PAREN: )
+L_PAREN: (
+COND: cond
+L_PAREN: (
+L_PAREN: (
+NULL_Q: null?
+ID : X
+R_PAREN: )
+INT: 0
+R_PAREN: )
+L_PAREN: (
+TRUE: #T
+L_PAREN: (
+PLUS: +
+INT: 1
+L_PAREN: (
+ID : length
+L_PAREN: (
+CDR: cdr
+ID : x
+R_PAREN: )
+R_PAREN: )
+R_PAREN: )
+R_PAREN: )
+R_PAREN: )
+R_PAREN: )
+R_PAREN: )
