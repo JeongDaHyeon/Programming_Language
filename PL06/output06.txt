@@ -1,0 +1,1 @@
+( [DEFINE] [ID:length] ( [LAMBDA] ( [ID:x] ) ( [COND] ( ( [NULL_Q] [ID:X] ) [INT:0] ) ( [#T] ( [PLUS] [INT:1] ( [ID:length] ( [CDR] [ID:x] ) ) ) ) ) ) ) 
